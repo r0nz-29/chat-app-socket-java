@@ -39,9 +39,8 @@ public class Server {
                 String message;
                 while ((message = reader.readLine()) != null) {
                     System.out.println("Received message: " + message);
-                    for (ClientThread client : clientList) {
-                        client.sendMessage(message);
-                    }
+                    int clientIndex = Integer.parseInt(message.substring(0, 1));
+                    clientList.get(clientIndex).sendMessage(message);
                 }
             } catch (IOException e) {
                 System.out.println("Error reading from client: " + e);
